@@ -130,11 +130,11 @@ int main(int argc, char** argv)
    // open a browser window with the client HTML page
    //QUrl url = QUrl::fromLocalFile("D:/index.html");
 
-   QUrl url = QUrl::fromLocalFile("D:/WebTest/webchannel/drawing.svg");
-   url.setQuery(QStringLiteral("webChannelBaseUrl=") + server.serverUrl().toString());
-   QDesktopServices::openUrl(url);
+//   QUrl url = QUrl::fromLocalFile("D:/WebTest/webchannel/drawing.svg");
+//   url.setQuery(QStringLiteral("webChannelBaseUrl=") + server.serverUrl().toString());
+//   QDesktopServices::openUrl(url);
 
-   dialog.displayMessage(QObject::tr("Initialization complete, opening browser at %1.").arg(url.toDisplayString()));
+   //dialog.displayMessage(QObject::tr("Initialization complete, opening browser at %1.").arg(url.toDisplayString()));
 
    return app.exec();
 }
