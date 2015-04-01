@@ -100,7 +100,7 @@ window.onload = function() {
          dialog.fill_rl.connect(function(id, value) {
             create_clippath(id);
             var cliprect =  document.getElementById("cpr-"+id);
-            var left = document.getElementById(id).getBBox().y;
+            var left = document.getElementById(id).getBBox().x;
             var width = document.getElementById(id).getBBox().width;
             if(cliprect != null)
             {
