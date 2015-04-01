@@ -35,9 +35,9 @@ public:
       connect(ui.setstring, SIGNAL(clicked()), SLOT(setString()));
 
       connect(ui.setfillBT, SIGNAL(clicked()), SLOT(setFillBT()));
-      //connect(ui.setfillTB, SIGNAL(clicked()), SLOT(setFillTB()));
-//      connect(ui.setfillLR, SIGNAL(clicked()), SLOT(setFillLR()));
-//      connect(ui.setfillRL, SIGNAL(clicked()), SLOT(setFillRL()));
+      connect(ui.setfillTB, SIGNAL(clicked()), SLOT(setFillTB()));
+      connect(ui.setfillLR, SIGNAL(clicked()), SLOT(setFillLR()));
+      connect(ui.setfillRL, SIGNAL(clicked()), SLOT(setFillRL()));
 
       connect(ui.setvisibility, SIGNAL(clicked()), SLOT(setVisibility()));
    }
@@ -53,7 +53,10 @@ signals:
 
    void string(const QString& id, const QString& value);
 
-   void fillbt(const QString& id, const QString& value);
+   void fill_bt(const QString& id, const QString& value);
+   void fill_tb(const QString& id, const QString& value);
+   void fill_lr(const QString& id, const QString& value);
+   void fill_rl(const QString& id, const QString& value);
 
    void visibility(const QString& id, const QString& value);
 
@@ -67,37 +70,43 @@ private slots:
 
    void setFillColor()
    {
-      const QString object = ui.object->text();
-      const QString value = ui.value->text();
-      emit fillcolor(object, value);
+      emit fillcolor(ui.object->text(), ui.value->text());
    }
 
    void setStrokeColor()
    {
-      const QString object = ui.object->text();
-      const QString value = ui.value->text();
-      emit strokecolor(object, value);
+      emit strokecolor(ui.object->text(), ui.value->text());
    }
 
    void setString()
    {
-      const QString object = ui.object->text();
-      const QString value = ui.value->text();
-      emit string(object, value);
+      emit string(ui.object->text(), ui.value->text());
    }
 
    void setFillBT()
    {
-      const QString object = ui.object->text();
-      const QString value = ui.value->text();
-      emit fillbt(object, value);
+      emit fill_bt(ui.object->text(), ui.value->text());
    }
+
+   void setFillTB()
+   {
+      emit fill_tb(ui.object->text(), ui.value->text());
+   }
+
+   void setFillLR()
+   {
+      emit fill_lr(ui.object->text(), ui.value->text());
+   }
+
+   void setFillRL()
+   {
+      emit fill_rl(ui.object->text(), ui.value->text());
+   }
+
 
    void setVisibility()
    {
-      const QString object = ui.object->text();
-      const QString value = ui.value->text();
-      emit visibility(object, value);
+      emit visibility(ui.object->text(), ui.value->text());
    }
 private:
    QDialog dialog;

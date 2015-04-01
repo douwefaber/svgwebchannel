@@ -5,8 +5,12 @@ function output(message)
    //   var output = document.getElementById("output");
    //output.innerHTML = output.innerHTML + message + "\n";
 }
+
+
 window.onload = function() {
    // var baseUrl = (/[?&]webChannelBaseUrl=([A-Za-z0-9\-:/\.]+)/.exec(location.search)[1]);
+   create_defs_element();
+
    var baseUrl = "ws://127.0.0.1:12345"
       output("Connecting to WebSocket server at " + baseUrl + ".");
    var socket = new WebSocket(baseUrl);
@@ -58,16 +62,46 @@ window.onload = function() {
             }
          });
 
-         dialog.fillbt.connect(function(id, value) {
-            // cp-rect13135-9
-            var clippathname = "cp-" + id;
-            var url = "url(#"+clippathname+")";
-            document.getElementById(id).setAttribute("clip-path", url);
+         dialog.fill_bt.connect(function(id, value) {
+            create_clippath(id);
+            var cliprect =  document.getElementById("cpr-"+id);
+            var y1 = document.getElementById(id).getBoundingClientRect().top;
+            var height = document.getElementById(id).getBoundingClientRect().height;
+            if(cliprect != null)
+            {
+               cliprect.setAttribute("y", y1+(height*(1-value)));
+            }
+         });
 
-            var height = document.getElementById(id).getAttribute("height");
-            var perc = height*value;
-            document.getElementById(clippathname).setAttribute("height", perc);
-            alert(url);
+         dialog.fill_tb.connect(function(id, value) {
+            create_clippath(id);
+            var cliprect =  document.getElementById("cpr-"+id);
+            var height = document.getElementById(id).getBoundingClientRect().height;
+            if(cliprect != null)
+            {
+               cliprect.setAttribute("height", height*value);
+            }
+         });
+
+         dialog.fill_lr.connect(function(id, value) {
+            create_clippath(id);
+            var cliprect =  document.getElementById("cpr-"+id);
+            var width = document.getElementById(id).getBoundingClientRect().width;
+            if(cliprect != null)
+            {
+               cliprect.setAttribute("width", width*value);
+            }
+         });
+
+         dialog.fill_rl.connect(function(id, value) {
+            create_clippath(id);
+            var cliprect =  document.getElementById("cpr-"+id);
+            var left = document.getElementById(id).getBoundingClientRect().left;
+            var width = document.getElementById(id).getBoundingClientRect().width;
+            if(cliprect != null)
+            {
+               cliprect.setAttribute("x", left+(width*(1-value)));
+            }
          });
 
          dialog.visibility.connect(function(id, value) {
@@ -83,4 +117,49 @@ window.onload = function() {
       });
    }
 }
+
+function create_defs_element()
+{
+   var defelement = document.getElementsByTagName("defs")[0];
+   if(defelement == null)
+   {
+      var newelement = document.createElement("defs");
+      var parent_element = document.getElementsByTagName("svg")[0];
+      if(parent_element == null)
+         alert("failed to create the custom defs");
+      parent_element.insertBefore(newelement, parent_element.firstChild);
+   }
+}
+
+function create_clippath(element)
+{
+   var clippathname = "cp-" + element;
+   // Search for this element
+   var cp_element = document.getElementById(clippathname);
+   if(cp_element == null)
+   {
+      var clippathrectname = "cpr-" + element;
+      var cliprect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      var el = document.getElementById(element);
+
+      cliprect.setAttribute("id", clippathrectname);
+      cliprect.setAttribute("x", el.getBoundingClientRect().left);
+      cliprect.setAttribute("y", el.getBoundingClientRect().top);
+      cliprect.setAttribute("width", el.getBoundingClientRect().width); 
+      cliprect.setAttribute("height", el.getBoundingClientRect().height); 
+      var clippath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+
+      clippath.setAttribute("id", clippathname); 
+      clippath.appendChild(cliprect);
+
+      var defelement = document.getElementsByTagName("defs")[0];
+      defelement.appendChild(clippath);
+
+      el.setAttribute("clip-path", "url(#"+clippathname+")");
+   }
+}
+
+
+
+
 //END SETUP
