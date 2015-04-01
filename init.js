@@ -65,28 +65,32 @@ window.onload = function() {
          dialog.fill_bt.connect(function(id, value) {
             create_clippath(id);
             var cliprect =  document.getElementById("cpr-"+id);
-            var y1 = document.getElementById(id).getBoundingClientRect().top;
-            var height = document.getElementById(id).getBoundingClientRect().height;
+            var y1 = document.getElementById(id).getBBox().y;
+            var height = document.getElementById(id).getBBox().height;
             if(cliprect != null)
             {
-               cliprect.setAttribute("y", y1+(height*(1-value)));
+               cliprect.setAttribute("y", y1 + height * (1-value) );
+               console.log(document.getElementById(id));
+               console.log(cliprect);
             }
          });
 
          dialog.fill_tb.connect(function(id, value) {
             create_clippath(id);
             var cliprect =  document.getElementById("cpr-"+id);
-            var height = document.getElementById(id).getBoundingClientRect().height;
+            var height = document.getElementById(id).getBBox().height;
             if(cliprect != null)
             {
                cliprect.setAttribute("height", height*value);
+               console.log(document.getElementById(id));
+               console.log(cliprect);
             }
          });
 
          dialog.fill_lr.connect(function(id, value) {
             create_clippath(id);
             var cliprect =  document.getElementById("cpr-"+id);
-            var width = document.getElementById(id).getBoundingClientRect().width;
+            var width = document.getElementById(id).getBBox().width;
             if(cliprect != null)
             {
                cliprect.setAttribute("width", width*value);
@@ -96,8 +100,8 @@ window.onload = function() {
          dialog.fill_rl.connect(function(id, value) {
             create_clippath(id);
             var cliprect =  document.getElementById("cpr-"+id);
-            var left = document.getElementById(id).getBoundingClientRect().left;
-            var width = document.getElementById(id).getBoundingClientRect().width;
+            var left = document.getElementById(id).getBBox().y;
+            var width = document.getElementById(id).getBBox().width;
             if(cliprect != null)
             {
                cliprect.setAttribute("x", left+(width*(1-value)));
@@ -142,11 +146,12 @@ function create_clippath(element)
       var cliprect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       var el = document.getElementById(element);
 
+      console.log(el.getBoundingClientRect());
       cliprect.setAttribute("id", clippathrectname);
-      cliprect.setAttribute("x", el.getBoundingClientRect().left);
-      cliprect.setAttribute("y", el.getBoundingClientRect().top);
-      cliprect.setAttribute("width", el.getBoundingClientRect().width); 
-      cliprect.setAttribute("height", el.getBoundingClientRect().height); 
+      cliprect.setAttribute("x", el.getBBox().x);
+      cliprect.setAttribute("y", el.getBBox().y);
+      cliprect.setAttribute("width", el.getBBox().width); 
+      cliprect.setAttribute("height", el.getBBox().height); 
       var clippath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
 
       clippath.setAttribute("id", clippathname); 
