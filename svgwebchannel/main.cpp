@@ -40,6 +40,10 @@ public:
       connect(ui.setfillRL, SIGNAL(clicked()), SLOT(setFillRL()));
 
       connect(ui.setvisibility, SIGNAL(clicked()), SLOT(setVisibility()));
+
+      connect(ui.setrotation, SIGNAL(clicked()), SLOT(setRotation()));
+
+      connect(ui.strokelength, SIGNAL(clicked()), SLOT(setStrokeLength()));
    }
 
    void displayMessage(const QString &message)
@@ -59,6 +63,11 @@ signals:
    void fill_rl(const QString& id, const QString& value);
 
    void visibility(const QString& id, const QString& value);
+
+   void rotation(const QString& id, const QString& degrees,
+                 const QString& xCenter, const QString& yCenter);
+
+   void strokelength(const QString& id, const QString& value);
 
 public slots:
    void receiveText(const QString &text)
@@ -103,11 +112,23 @@ private slots:
       emit fill_rl(ui.object->text(), ui.value->text());
    }
 
-
    void setVisibility()
    {
       emit visibility(ui.object->text(), ui.value->text());
    }
+
+   void setRotation()
+   {
+      // object-id, 0.0-360.0 , xcenter, ycenter
+      emit rotation(ui.object->text(), ui.value->text(),
+                    ui.rotationcenterx->text(), ui.rotationcentery->text());
+   }
+
+   void setStrokeLength()
+   {
+      emit strokelength(ui.object->text(), ui.value->text());
+   }
+
 private:
    QDialog dialog;
    Ui::Dialog ui;

@@ -115,7 +115,41 @@ window.onload = function() {
             document.getElementById(id).setAttribute("visibility", "visible");
          });
 
+         dialog.rotation.connect(function(id, degrees, x_center, y_center) {
+            var object =  document.getElementById(id);
+            var x = x_center;
+            var y = y_center;
+            if(x == 0) {
+               x = object.getBBox().x + (object.getBBox().width / 2);
+            }
+            if(y == 0) {
+               y = object.getBBox().y + (object.getBBox().height / 2);
+            }
 
+            // If rotation was executed before there should be a rotation
+            // attribute which indicates which index our rotation is stored in
+            var rotationid = object.getAttribute("rotation_id");
+            if(rotationid == null)
+            {
+               var xFormList = object.transform.baseVal;
+               var svgroot = document.getElementsByTagName("svg")[0];
+               xFormList.appendItem(svgroot.createSVGTransform());
+               rotationid = xFormList.numberOfItems-1;
+               object.setAttribute("rotation_id", rotationid);
+            }
+
+            var rotationXForm = object.transform.baseVal.getItem(rotationid);
+            rotationXForm.setRotate(degrees, x, y);
+
+         });
+
+         dialog.strokelength.connect(function(id, value) {
+            var object = document.getElementById(id);
+            var length = object.getTotalLength();
+            debugger;
+            object.style.strokeDasharray = length + ' ' + length;
+            object.style.strokeDashoffset = (1-value) * length;
+         });
          dialog.receiveText("Client connected, ready to send/receive messages!");
          output("Connected to WebChannel, ready to send/receive messages!");
       });
@@ -165,6 +199,39 @@ function create_clippath(element)
 }
 
 
+function deltaTransformPoint(matrix, point)  {
+   var dx = point.x * matrix.a + point.y * matrix.c + 0;
+   var dy = point.x * matrix.b + point.y * matrix.d + 0;
+   return { x: dx, y: dy };
+}
 
+function decomposeMatrix(matrix) {
+   // @see https://gist.github.com/2052247
+   // calculate delta transform point
+   var px = deltaTransformPoint(matrix, { x: 0, y: 1 });
+   var py = deltaTransformPoint(matrix, { x: 1, y: 0 });
 
+   // calculate skew
+   var skewX = ((180 / Math.PI) * Math.atan2(px.y, px.x) - 90);
+   var skewY = ((180 / Math.PI) * Math.atan2(py.y, py.x));
+
+   return {
+      translateX: matrix.e,
+         translateY: matrix.f,
+         scaleX: Math.sqrt(matrix.a * matrix.a + matrix.b * matrix.b),
+         scaleY: Math.sqrt(matrix.c * matrix.c + matrix.d * matrix.d),
+         skewX: skewX,
+         skewY: skewY,
+         rotation: skewX // rotation is the same as skew x
+   };        
+}
+
+function getRotationFromMatrix(matrix)
+{
+   var px = deltaTransformPoint(matrix, { x: 0, y: 1 });
+   var py = deltaTransformPoint(matrix, { x: 1, y: 0 });
+   var rotation = ((180 / Math.PI) * Math.atan2(px.y, px.x) - 90);
+   return {rotation};
+}
+     //Usage: decomposeMatrix(document.getElementById('myElement').getCTM())
 //END SETUP

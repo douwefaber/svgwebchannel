@@ -35,8 +35,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0418605"
-     inkscape:cx="563.67425"
-     inkscape:cy="359.15162"
+     inkscape:cx="665.88069"
+     inkscape:cy="294.67277"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -763,7 +763,7 @@
     <text
        xml:space="default"
        id="text4730-6"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
        sodipodi:linespacing="125%"
        y="639.55756"
        x="360.77933">
@@ -3739,5 +3739,13 @@
        width="39.32692"
        id="rect4109"
        style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.67308092;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:200;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.11872756;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:200;stroke-opacity:1"
+       id="rect3633"
+       width="32.872242"
+       height="51.911308"
+       x="602.11603"
+       y="612.66431"
+       transform="matrix(0.98316754,-0.18270631,0.73718211,0.67569411,0,0)" />
   </g>
 </svg>
