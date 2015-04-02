@@ -43,7 +43,9 @@ public:
 
       connect(ui.setrotation, SIGNAL(clicked()), SLOT(setRotation()));
 
-      connect(ui.strokelength, SIGNAL(clicked()), SLOT(setStrokeLength()));
+      connect(ui.setstrokelength, SIGNAL(clicked()), SLOT(setStrokeLength()));
+
+      connect(ui.setmovement, SIGNAL(clicked()), SLOT(setMove()));
    }
 
    void displayMessage(const QString &message)
@@ -68,6 +70,11 @@ signals:
                  const QString& xCenter, const QString& yCenter);
 
    void strokelength(const QString& id, const QString& value);
+
+   void move(  const QString& id, const QString& value,
+               const QString& xfrom, const QString& yfrom,
+               const QString& xto, const QString& yto);
+
 
 public slots:
    void receiveText(const QString &text)
@@ -119,7 +126,6 @@ private slots:
 
    void setRotation()
    {
-      // object-id, 0.0-360.0 , xcenter, ycenter
       emit rotation(ui.object->text(), ui.value->text(),
                     ui.rotationcenterx->text(), ui.rotationcentery->text());
    }
@@ -127,6 +133,13 @@ private slots:
    void setStrokeLength()
    {
       emit strokelength(ui.object->text(), ui.value->text());
+   }
+
+   void setMove()
+   {
+      emit move(ui.object->text(), ui.value->text(),
+                    ui.xmovefrom->text(), ui.ymovefrom->text(),
+                     ui.xmoveto->text(), ui.ymoveto->text());
    }
 
 private:

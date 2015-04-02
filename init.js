@@ -150,6 +150,27 @@ window.onload = function() {
             object.style.strokeDasharray = length + ' ' + length;
             object.style.strokeDashoffset = (1-value) * length;
          });
+
+         dialog.move.connect(function(id, value, xfrom, yfrom, xto, yto) {
+            var object =  document.getElementById(id);
+            // If move was executed before there should be a move
+            // attribute which indicates which index our move is stored in
+            var moveid = object.getAttribute("move_id");
+            if(moveid == null)
+            {
+               var xFormList = object.transform.baseVal;
+               var svgroot = document.getElementsByTagName("svg")[0];
+               xFormList.appendItem(svgroot.createSVGTransform());
+               rotationid = xFormList.numberOfItems-1;
+               object.setAttribute("move_id", moveid);
+            }
+
+            var moveXForm = object.transform.baseVal.getItem(moveid);
+            moveXForm.setTranslate((xto-xfrom)*value, (yto-yfrom)*value);
+
+         });
+
+
          dialog.receiveText("Client connected, ready to send/receive messages!");
          output("Connected to WebChannel, ready to send/receive messages!");
       });
