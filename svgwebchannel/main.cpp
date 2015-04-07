@@ -45,6 +45,8 @@ public:
 
       connect(ui.setstrokelength, SIGNAL(clicked()), SLOT(setStrokeLength()));
 
+      connect(ui.settooltip, SIGNAL(clicked()), SLOT(setToolTip()));
+
       connect(ui.setmovement, SIGNAL(clicked()), SLOT(setMove()));
    }
 
@@ -70,6 +72,8 @@ signals:
                  const QString& xCenter, const QString& yCenter);
 
    void strokelength(const QString& id, const QString& value);
+
+   void tooltip(const QString& id, const QString& value);
 
    void move(  const QString& id, const QString& value,
                const QString& xfrom, const QString& yfrom,
@@ -133,6 +137,11 @@ private slots:
    void setStrokeLength()
    {
       emit strokelength(ui.object->text(), ui.value->text());
+   }
+
+   void setToolTip()
+   {
+      emit tooltip(ui.object->text(), ui.value->text());
    }
 
    void setMove()

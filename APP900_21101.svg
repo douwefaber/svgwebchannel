@@ -12,6 +12,7 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2"
    version="1.1"
+   viewBox="0 0 1141 764"
    onopen=""
    onclose=""
    menubar=""
@@ -21,12 +22,17 @@
    sodipodi:docname="APP900_21101.svg"
    height="764"
    onload="window.onload;">
+  <title
+     id="title3632">APP900_21101</title>
   <script
      xlink:href="init.js"
      id="script3339" />
   <script
      xlink:href="qwebchannel.js"
      id="script3340" />
+     <style
+     xlink:href="tooltip.css"
+     id="style1" />
   <sodipodi:namedview
      id="base"
      pagecolor="#e1e1e1"
@@ -34,9 +40,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0418605"
-     inkscape:cx="665.88069"
-     inkscape:cy="294.67277"
+     inkscape:zoom="0.97035431"
+     inkscape:cx="448.1272"
+     inkscape:cy="338.98648"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -67,7 +73,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title>APP900_21101</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1007,7 +1013,20 @@
     </g>
     <g
        transform="translate(342.00003,-3.3837334e-5)"
-       id="g6582-3">
+       id="g6582-3"
+       onmouseover="8787">
+      <desc
+         id="desc3632">Beschrijving</desc>
+      <title
+         id="title3630">Knoppie
+sdfghsdfgsd
+sfh
+gfh
+dfh
+dfh
+dfh
+dfh
+</title>
       <rect
          actions="SETVAL @XXX.COMMANDO.M_2 -2"
          alfanumeric="0"
