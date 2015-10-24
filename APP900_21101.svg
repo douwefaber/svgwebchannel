@@ -30,7 +30,7 @@
   <script
      xlink:href="qwebchannel.js"
      id="script3340" />
-     <style
+  <style
      xlink:href="tooltip.css"
      id="style1" />
   <sodipodi:namedview
@@ -41,13 +41,13 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.97035431"
-     inkscape:cx="448.1272"
+     inkscape:cx="784.29129"
      inkscape:cy="338.98648"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1680"
-     inkscape:window-height="998"
+     inkscape:window-width="1600"
+     inkscape:window-height="848"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -64,7 +64,29 @@
      fit-margin-right="0"
      fit-margin-bottom="0" />
   <defs
-     id="defs4" />
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4434">
+      <stop
+         style="stop-color:#0085ad;stop-opacity:1;"
+         offset="0"
+         id="stop4436" />
+      <stop
+         style="stop-color:#0085ad;stop-opacity:0;"
+         offset="1"
+         id="stop4438" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4434"
+       id="linearGradient4440"
+       x1="972.10229"
+       y1="815.30243"
+       x2="987.35699"
+       y2="451.49371"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -2359,7 +2381,7 @@ dfh
        rotationcenter=""
        moveto=""
        id="rect13135-9"
-       style="fill:#0085ad;fill-opacity:1;stroke:none"
+       style="fill:url(#linearGradient4440);fill-opacity:1;stroke:none"
        movesource=""
        decimals=""
        visiblevalue="" />
